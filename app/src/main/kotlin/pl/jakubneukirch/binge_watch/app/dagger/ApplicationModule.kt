@@ -7,9 +7,9 @@ import pl.jakubneukirch.binge_watch.app.BingeApp
 
 
 @Module
-class ApplicationModule(val app: BingeApp) {
+class ApplicationModule(private val app: BingeApp) {
 
     @Provides
     @AppScope
-    fun providesAppContext(): Context = app
+    fun providesAppContext(): Context = app.applicationContext
 }
