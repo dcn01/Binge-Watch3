@@ -1,4 +1,6 @@
 package pl.jakubneukirch.binge_watch.main.dagger
 
-@MainScope
+import javax.inject.Scope
+
+@Scope
 annotation class MainScope
