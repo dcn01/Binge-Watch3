@@ -9,16 +9,16 @@ import kotlinx.android.synthetic.main.activity_main.view.*
 import pl.jakubneukirch.binge_watch.R
 
 
-class MainView(context: Context): FrameLayout(context) {
+open class MainView(context: Context): FrameLayout(context) {
     init {
         View.inflate(context, R.layout.activity_main, this)
     }
 
-    fun setMainText(text: String){
+    open fun setMainText(text: String){
         txv.setText(text)
     }
 
-    fun observeButton(): Observable<Any>{
+    open fun observeButton(): Observable<Any>{
         return RxView.clicks(btn)
     }
 }

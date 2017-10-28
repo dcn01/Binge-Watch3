@@ -6,11 +6,9 @@ import pl.jakubneukirch.binge_watch.api.objects.Airing
 import pl.jakubneukirch.binge_watch.api.objects.Serie
 
 
-class MainModel(val apiInterface: MovieDBInterface) {
+open class MainModel(val apiInterface: MovieDBInterface) {
 
-    fun getAiring():Observable<Airing> = apiInterface.getAiring()
+    open fun getAiring():Observable<Airing> = apiInterface.getAiring()
 
-    fun getSerie(id: Int): Observable<Serie> = apiInterface.getSerie(id)
-
-    fun getSimilar()
+    open fun getSerie(id: Int): Observable<Serie> = apiInterface.getSerie(id)
 }

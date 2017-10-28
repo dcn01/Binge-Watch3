@@ -21,7 +21,11 @@ android {
         }
     }
     configurations.all {
-        resolutionStrategy.force 'com.google.code.findbugs:jsr305:1.3.9'
+       // resolutionStrategy.force 'com.google.code.findbugs:jsr305:1.3.9'
+        resolutionStrategy {
+            force 'org.jetbrains.kotlin:kotlin-stdlib:1.0.6'
+            force 'com.google.code.findbugs:jsr305:1.3.9'
+        }
     }
 
     sourceSets{
@@ -72,6 +76,7 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     //Testing
     testCompile 'org.mockito:mockito-core:2.11.0'
+    testCompile "com.nhaarman:mockito-kotlin:1.5.0"
     testCompile 'junit:junit:4.12'
 }
 repositories {

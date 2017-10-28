@@ -1,12 +1,13 @@
 package pl.jakubneukirch.binge_watch.api.objects
 
 import com.google.gson.annotations.SerializedName
+import java.util.*
 
 
 class Airing {
 
     @SerializedName("results")
-    lateinit var series: List<Serie>
+    var series: List<Serie> = ArrayList()
 
     override fun toString(): String {
         var b: StringBuilder = StringBuilder()

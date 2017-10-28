@@ -16,11 +16,7 @@ class MainPresenter(val view: MainView, val model: MainModel) {
     }
 
     private fun observeSearchButton(): Disposable{
-        Log.d("ButtonObservable", "osb")
         return view.observeButton()
-                .doOnNext{
-                    Log.d("ButtonObservable", "observing")
-                }
                 .observeOn(Schedulers.newThread())
                 .switchMap{
                     model.getAiring()
@@ -29,11 +25,11 @@ class MainPresenter(val view: MainView, val model: MainModel) {
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .subscribe{
                     airing ->
-                    Log.d("tt", "${airing.series.size}")
                     view.setMainText(airing.toString())
                 }
 
     }
+
 
     fun onDestroy(){
         compositeDisposable.clear()
