@@ -1,25 +1,29 @@
 package pl.jakubneukirch.binge_watch
 
 import com.nhaarman.mockito_kotlin.mock
-import com.nhaarman.mockito_kotlin.verify
 import io.reactivex.Observable
-import kotlinx.android.synthetic.main.activity_main.view.*
+import io.reactivex.Scheduler
+import io.reactivex.android.plugins.RxAndroidPlugins
+import io.reactivex.disposables.Disposable
+import io.reactivex.internal.schedulers.ExecutorScheduler
+import io.reactivex.plugins.RxJavaPlugins
 import org.junit.Test
 
-import org.junit.Assert.*
 import org.junit.Before
+import org.junit.BeforeClass
+import org.junit.Rule
 import org.mockito.Mock
 import org.mockito.Mockito
-import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnit
 import org.mockito.junit.MockitoRule
 import pl.jakubneukirch.binge_watch.api.objects.Airing
 import pl.jakubneukirch.binge_watch.main.mvp.MainModel
 import pl.jakubneukirch.binge_watch.main.mvp.MainPresenter
 import pl.jakubneukirch.binge_watch.main.mvp.MainView
+import java.util.concurrent.TimeUnit
 
 
-class MainTest {
+public class MainTest {
 
     var model: MainModel = mock()
     var view: MainView = mock()
@@ -32,6 +36,29 @@ class MainTest {
         presenter = MainPresenter(view, model)
     }
 
+    companion object {
+        @BeforeClass
+        fun setUpRxSchedulers(){
+            var immediate: Scheduler = object: Scheduler(){
+
+                override fun scheduleDirect(run: Runnable, delay: Long, unit: TimeUnit): Disposable {
+                    return super.scheduleDirect(run, 0, unit)
+                }
+
+                override fun createWorker(): Worker {
+                    return ExecutorScheduler.ExecutorWorker(Runnable::run)
+                }
+            }
+
+            RxJavaPlugins.setInitIoSchedulerHandler { scheduler -> immediate }
+            RxJavaPlugins.setInitComputationSchedulerHandler { scheduler -> immediate }
+            RxJavaPlugins.setInitNewThreadSchedulerHandler { scheduler -> immediate }
+            RxJavaPlugins.setInitSingleSchedulerHandler { scheduler -> immediate }
+            RxAndroidPlugins.setInitMainThreadSchedulerHandler { scheduler -> immediate }
+        }
+    }
+
+
     @Test
     @Throws(Exception::class)
     fun serieIsOk() {
@@ -39,7 +66,6 @@ class MainTest {
 
         presenter.onCreate()
 
-        Mockito.verify(view.observeButton())
-
+        Mockito.verify(view).observeButton()
     }
 }
