@@ -31,17 +31,6 @@ class MainModule(val activity: MainActivity) {
 
     @Provides
     @MainScope
-    fun providesModel(movieDBInterface: MovieDBInterface): MainModel = MainModel(movieDBInterface)
+    fun providesModel(): MainModel = MainModel()
 
-    @Provides
-    @MainScope
-    fun providesMovieDBInterface(retrofit: Retrofit): MovieDBInterface = retrofit.create(MovieDBInterface::class.java)
-
-    @Provides
-    @MainScope
-    fun providesRetrofit(): Retrofit = Retrofit.Builder()
-            .baseUrl(MovieDBInterface.BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .build()
 }

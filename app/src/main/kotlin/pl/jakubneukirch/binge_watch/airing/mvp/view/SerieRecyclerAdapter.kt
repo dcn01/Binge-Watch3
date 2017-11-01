@@ -1,4 +1,4 @@
-package pl.jakubneukirch.binge_watch.main.mvp.view
+package pl.jakubneukirch.binge_watch.airing.mvp.view
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater

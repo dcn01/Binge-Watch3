@@ -1,5 +1,6 @@
 package pl.jakubneukirch.binge_watch.main.mvp
 
+import android.support.design.widget.Snackbar
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -12,22 +13,14 @@ class MainPresenter(val view: MainView, val model: MainModel) {
     val compositeDisposable = CompositeDisposable()
 
     fun onCreate(){
-        compositeDisposable.add(observeSearchButton())
+        compositeDisposable.add(observeAiringMenuItem())
     }
 
-    private fun observeSearchButton(): Disposable{
-        return view.observeButton()
-                .observeOn(Schedulers.newThread())
-                .switchMap{
-                    model.getAiring()
+    fun observeAiringMenuItem(): Disposable{
+        return view.observeAiringMenu()
+                .subscribe {
+                    Snackbar.make(view,"airing clicked", Snackbar.LENGTH_LONG).show()
                 }
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(AndroidSchedulers.mainThread())
-                .subscribe{
-                    airing ->
-                    view.setData(airing.series)
-                }
-
     }
 
 
