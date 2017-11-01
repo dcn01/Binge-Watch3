@@ -11,15 +11,11 @@ import org.junit.Test
 
 import org.junit.Before
 import org.junit.BeforeClass
-import org.junit.Rule
-import org.mockito.Mock
 import org.mockito.Mockito
-import org.mockito.junit.MockitoJUnit
-import org.mockito.junit.MockitoRule
 import pl.jakubneukirch.binge_watch.api.objects.Airing
 import pl.jakubneukirch.binge_watch.main.mvp.MainModel
 import pl.jakubneukirch.binge_watch.main.mvp.MainPresenter
-import pl.jakubneukirch.binge_watch.main.mvp.MainView
+import pl.jakubneukirch.binge_watch.main.mvp.view.MainView
 import java.util.concurrent.TimeUnit
 
 

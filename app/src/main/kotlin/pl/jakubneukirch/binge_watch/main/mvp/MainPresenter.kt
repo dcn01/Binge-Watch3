@@ -1,10 +1,10 @@
 package pl.jakubneukirch.binge_watch.main.mvp
 
-import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import pl.jakubneukirch.binge_watch.main.mvp.view.MainView
 
 
 class MainPresenter(val view: MainView, val model: MainModel) {
@@ -25,7 +25,7 @@ class MainPresenter(val view: MainView, val model: MainModel) {
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .subscribe{
                     airing ->
-                    view.setMainText(airing.toString())
+                    view.setData(airing.series)
                 }
 
     }

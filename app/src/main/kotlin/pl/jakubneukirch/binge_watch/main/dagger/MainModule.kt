@@ -7,7 +7,7 @@ import pl.jakubneukirch.binge_watch.api.MovieDBInterface
 import pl.jakubneukirch.binge_watch.main.MainActivity
 import pl.jakubneukirch.binge_watch.main.mvp.MainModel
 import pl.jakubneukirch.binge_watch.main.mvp.MainPresenter
-import pl.jakubneukirch.binge_watch.main.mvp.MainView
+import pl.jakubneukirch.binge_watch.main.mvp.view.MainView
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory

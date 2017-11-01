@@ -2,13 +2,11 @@ package pl.jakubneukirch.binge_watch.main
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import pl.jakubneukirch.binge_watch.R
 import pl.jakubneukirch.binge_watch.app.BingeApp
-import pl.jakubneukirch.binge_watch.app.dagger.DaggerApplicationComponent
 import pl.jakubneukirch.binge_watch.main.dagger.DaggerMainComponent
 import pl.jakubneukirch.binge_watch.main.dagger.MainModule
 import pl.jakubneukirch.binge_watch.main.mvp.MainPresenter
-import pl.jakubneukirch.binge_watch.main.mvp.MainView
+import pl.jakubneukirch.binge_watch.main.mvp.view.MainView
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
