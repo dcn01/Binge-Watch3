@@ -4,9 +4,12 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_series_list.view.*
 import pl.jakubneukirch.binge_watch.R
+import pl.jakubneukirch.binge_watch.api.MovieDBInterface
 import pl.jakubneukirch.binge_watch.api.objects.Serie
 import java.util.*
 
@@ -16,10 +19,12 @@ class SerieRecyclerAdapter(var list: List<Serie> = ArrayList<Serie>()) : Recycle
 
         val itemTitle: TextView
         val itemDesc: TextView
+        val posterView: ImageView
 
         init{
             itemTitle = view.itemTitle
             itemDesc = view.itemDesc
+            posterView = view.posterImage
         }
     }
 
@@ -32,6 +37,9 @@ class SerieRecyclerAdapter(var list: List<Serie> = ArrayList<Serie>()) : Recycle
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
         holder?.itemTitle?.setText(list.get(position).name)
         holder?.itemDesc?.setText("${list.get(position).id}")
+        Picasso.with(holder?.itemView?.context)
+                .load("${MovieDBInterface.API_URL_IMAGE_W92}${list.get(position).posterPath}")
+                .into(holder?.posterView)
     }
 
     override fun getItemCount(): Int {

@@ -59,6 +59,8 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    //picasso
+    compile 'com.squareup.picasso:picasso:2.5.2'
     //gson
     compile 'com.google.code.gson:gson:2.8.2'
     compile ('com.fatboyindustrial.gson-jodatime-serialisers:gson-jodatime-serialisers:1.5.0') {

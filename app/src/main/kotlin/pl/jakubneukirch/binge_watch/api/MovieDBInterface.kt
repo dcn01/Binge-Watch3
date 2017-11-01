@@ -14,6 +14,8 @@ interface MovieDBInterface {
         const val AIRING_TODAY = "airing_today"
         const val API = "?api_key="
         const val API_KEY = "948b102611ac966a27ec434331c4cc55"
+        const val API_URL_IMAGE_W185 = "https://image.tmdb.org/t/p/w185/"
+        const val API_URL_IMAGE_W92 = "https://image.tmdb.org/t/p/w92/"
     }
 
     @GET("$AIRING_TODAY$API$API_KEY")
