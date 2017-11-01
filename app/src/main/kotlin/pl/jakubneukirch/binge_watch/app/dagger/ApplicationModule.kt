@@ -18,11 +18,11 @@ class ApplicationModule(private val app: BingeApp) {
     fun providesAppContext(): Context = app.applicationContext
 
     @Provides
-    @Singleton
+    @AppScope
     fun providesMovieDBInterface(retrofit: Retrofit): MovieDBInterface = retrofit.create(MovieDBInterface::class.java)
 
     @Provides
-    @Singleton
+    @AppScope
     fun providesRetrofit(): Retrofit = Retrofit.Builder()
             .baseUrl(MovieDBInterface.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())

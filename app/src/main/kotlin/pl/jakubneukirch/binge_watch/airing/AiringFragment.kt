@@ -1,6 +1,6 @@
 package pl.jakubneukirch.binge_watch.airing
 
-import android.app.Fragment
+import android.support.v4.app.Fragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,9 +14,9 @@ import javax.inject.Inject
 
 class AiringFragment: Fragment() {
 
-    //@Inject
+    @Inject
     lateinit var view: AiringView
-    //@Inject
+    @Inject
     lateinit var presenter: AiringPresenter
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {

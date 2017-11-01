@@ -1,6 +1,7 @@
 package pl.jakubneukirch.binge_watch.main.dagger
 
 import android.content.Context
+import android.support.v4.app.FragmentManager
 import dagger.Module
 import dagger.Provides
 import pl.jakubneukirch.binge_watch.api.MovieDBInterface
@@ -23,7 +24,7 @@ class MainModule(val activity: MainActivity) {
 
     @Provides
     @MainScope
-    fun providesView(activity: MainActivity): MainView = MainView(activity)
+    fun providesView(activity: MainActivity, fragmentManager: FragmentManager): MainView = MainView(activity, fragmentManager)
 
     @Provides
     @MainScope
@@ -32,5 +33,9 @@ class MainModule(val activity: MainActivity) {
     @Provides
     @MainScope
     fun providesModel(): MainModel = MainModel()
+
+    @Provides
+    @MainScope
+    fun providesFragmentManager(): FragmentManager = activity.supportFragmentManager
 
 }
