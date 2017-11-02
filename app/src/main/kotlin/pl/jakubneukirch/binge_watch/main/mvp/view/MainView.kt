@@ -24,6 +24,7 @@ open class MainView(context: Context, val fragmentManager: FragmentManager): Fra
         View.inflate(context, R.layout.activity_main, this)
         mainPagerAdapter = MainPagerAdapter(fragmentManager)
         mainPager.adapter = mainPagerAdapter
+        switchPage(MainPagerAdapter.AIRING_FRAGMENT_NAV)
     }
 
     open fun observePageChange():Observable<Int>{
