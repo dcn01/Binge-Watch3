@@ -12,6 +12,7 @@ import io.reactivex.Observable
 import io.reactivex.android.plugins.RxAndroidPlugins
 import kotlinx.android.synthetic.main.activity_main.view.*
 import pl.jakubneukirch.binge_watch.R
+import pl.jakubneukirch.binge_watch.RxUtils.RxViewPager
 import javax.inject.Inject
 
 
@@ -26,21 +27,7 @@ open class MainView(context: Context, val fragmentManager: FragmentManager): Fra
     }
 
     open fun observePageChange():Observable<Int>{
-        return Observable.create { subscriber ->
-            mainPager.addOnPageChangeListener(object: ViewPager.OnPageChangeListener{
-                override fun onPageScrollStateChanged(state: Int) {
-
-                }
-
-                override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-
-                }
-
-                override fun onPageSelected(position: Int) {
-                    subscriber.onNext(position)
-                }
-            })
-        }
+        return RxViewPager.pageChanges(mainPager)
     }
 
     open fun observeAiringMenuItem(): Observable<Any>{
