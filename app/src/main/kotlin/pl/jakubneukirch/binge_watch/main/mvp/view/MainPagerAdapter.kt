@@ -9,7 +9,9 @@ class MainPagerAdapter(fragmentManager: FragmentManager): FragmentPagerAdapter(f
 
     companion object {
         const val ITEM_COUNT: Int = 3
-        const val AIRING_FRAGMENT_NAV = 0
+        const val FAVORITES_FRAGMENT_NAV = 0
+        const val AIRING_FRAGMENT_NAV = 1
+        const val SIMILAR_FRAGMENT_NAV = 2
 
         val fragments: Array<Fragment>
 
