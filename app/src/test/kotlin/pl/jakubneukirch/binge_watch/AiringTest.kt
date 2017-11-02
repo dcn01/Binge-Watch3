@@ -42,8 +42,7 @@ class AiringTest {
 
         presenter.onCreate()
 
-        Mockito.verify(model).getAiring()
-        //Mockito.verify(view).setData(ArrayList<Serie>())
+        Mockito.verify(view).setData(airing.series)
     }
 
     companion object {
