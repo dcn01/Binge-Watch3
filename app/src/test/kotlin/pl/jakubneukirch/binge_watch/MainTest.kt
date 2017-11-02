@@ -28,14 +28,14 @@ public class MainTest {
     private val airing: Observable<Airing> = Observable.just(Airing())
 
     @Before
-    fun setup(){
+    fun setup() {
         presenter = MainPresenter(view, model)
     }
 
     companion object {
         @BeforeClass
-        fun setUpRxSchedulers(){
-            var immediate: Scheduler = object: Scheduler(){
+        fun setUpRxSchedulers() {
+            var immediate: Scheduler = object : Scheduler() {
 
                 override fun scheduleDirect(run: Runnable, delay: Long, unit: TimeUnit): Disposable {
                     return super.scheduleDirect(run, 0, unit)
@@ -55,13 +55,55 @@ public class MainTest {
     }
 
 
-    @Test
+   /* @Test
     @Throws(Exception::class)
-    fun serieIsOk() {
-        Mockito.`when`(view.observeButton()).thenReturn(Observable.never())
+    fun isAiringObserved() {
+        Mockito.`when`(view.observeAiringMenuItem()).thenReturn(Observable.never())
+        Mockito.`when`(view.observeFavoritesMenuItem()).thenReturn(Observable.never())
+        Mockito.`when`(view.observeSimilarMenuItem()).thenReturn(Observable.never())
+        Mockito.`when`(view.observePageChange()).thenReturn(Observable.never())
 
         presenter.onCreate()
 
-        Mockito.verify(view).observeButton()
+        Mockito.verify(presenter).observeAiringMenuItem()
     }
+
+    @Test
+    @Throws(Exception::class)
+    fun isFavoritesObserved() {
+        Mockito.`when`(view.observeAiringMenuItem()).thenReturn(Observable.never())
+        Mockito.`when`(view.observeFavoritesMenuItem()).thenReturn(Observable.never())
+        Mockito.`when`(view.observeSimilarMenuItem()).thenReturn(Observable.never())
+        Mockito.`when`(view.observePageChange()).thenReturn(Observable.never())
+
+        presenter.onCreate()
+
+        Mockito.verify(presenter).observeFavoritesMenuItem()
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun isSimilarObserved() {
+        Mockito.`when`(view.observeAiringMenuItem()).thenReturn(Observable.never())
+        Mockito.`when`(view.observeFavoritesMenuItem()).thenReturn(Observable.never())
+        Mockito.`when`(view.observeSimilarMenuItem()).thenReturn(Observable.never())
+        Mockito.`when`(view.observePageChange()).thenReturn(Observable.never())
+
+        presenter.onCreate()
+
+        Mockito.verify(presenter).observeSimilarMenuItem()
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun isPageChangeObserved() {
+        Mockito.`when`(view.observeAiringMenuItem()).thenReturn(Observable.never())
+        Mockito.`when`(view.observeFavoritesMenuItem()).thenReturn(Observable.never())
+        Mockito.`when`(view.observeSimilarMenuItem()).thenReturn(Observable.never())
+        Mockito.`when`(view.observePageChange()).thenReturn(Observable.never())
+
+        presenter.onCreate()
+
+        Mockito.verify(presenter).observePageChange()
+    } */
 }

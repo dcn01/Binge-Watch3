@@ -14,6 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
+            android:layout_above="@+id/navigationBottom"
     />
 
     <android.support.design.widget.BottomNavigationView
@@ -22,7 +23,6 @@
             app:menu="@menu/bottom_navigation_menu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/mainPager"
             android:layout_alignParentBottom="true"
             app:itemTextColor="@color/navigation_color_state"
             app:itemIconTint="@color/navigation_color_state"

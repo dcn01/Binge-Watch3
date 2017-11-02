@@ -18,14 +18,6 @@ class AiringView(context: Context): FrameLayout(context) {
         airingRecyclerView.layoutManager = LinearLayoutManager(context)
     }
 
-    open fun setMainText(text: String){
-        txv.setText(text)
-    }
-
-    open fun observeButton(): Observable<Any> {
-        return RxView.clicks(btn)
-    }
-
     open fun setData(list: List<Serie>){
         seriesAdapter.setData(list)
     }
