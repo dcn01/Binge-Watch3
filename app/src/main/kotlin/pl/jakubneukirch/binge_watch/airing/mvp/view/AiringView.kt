@@ -6,8 +6,10 @@ import android.view.View
 import android.widget.FrameLayout
 import com.jakewharton.rxbinding2.view.RxView
 import io.reactivex.Observable
+import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.fragment_airing.view.*
 import pl.jakubneukirch.binge_watch.R
+import pl.jakubneukirch.binge_watch.RxUtils.RxSwipeRefreshLayout
 import pl.jakubneukirch.binge_watch.api.objects.Serie
 
 class AiringView(context: Context): FrameLayout(context) {
@@ -20,6 +22,14 @@ class AiringView(context: Context): FrameLayout(context) {
 
     open fun setData(list: List<Serie>){
         seriesAdapter.setData(list)
+    }
+
+    open fun observeRefreshLayout():Observable<Any>{
+        return RxSwipeRefreshLayout.refreshes(mainSwipeLayout)
+    }
+
+    open fun setRefreshing(b: Boolean){
+        mainSwipeLayout.isRefreshing = b
     }
 
 }
