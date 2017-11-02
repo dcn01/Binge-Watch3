@@ -22,14 +22,18 @@ class AiringPresenter(val view: AiringView, val model: AiringModel) {
         reload()
     }
 
+    enum class Irrelevant{
+        INSTANCE
+    }
+
     fun initReload() {
         reloadObservable = Observable.create { e: ObservableEmitter<Any> ->
             reload = {
-                e.onNext(Any())
+                e.onNext(Irrelevant.INSTANCE)
             }
         }
                 .observeOn(Schedulers.newThread())
-                .switchMap {
+                .switchMap { _ ->
                     model.getAiring()
                 }
                 .observeOn(AndroidSchedulers.mainThread())
@@ -42,14 +46,14 @@ class AiringPresenter(val view: AiringView, val model: AiringModel) {
 
     }
 
-    fun observeRefreshLayout():Disposable{
+    fun observeRefreshLayout(): Disposable {
         return view.observeRefreshLayout()
                 .doOnEach {
                     view.setRefreshing(false)
                 }
                 .subscribe {
-            reload()
-        }
+                    reload()
+                }
     }
 
     fun onDestroy() {

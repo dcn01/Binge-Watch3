@@ -22,7 +22,6 @@ class MainActivity : AppCompatActivity() {
         initDagger()
         setContentView(view)
         presenter.onCreate()
-        mainPager
     }
 
     private fun initDagger(){

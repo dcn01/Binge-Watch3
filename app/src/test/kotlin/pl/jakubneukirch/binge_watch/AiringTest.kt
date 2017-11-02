@@ -7,43 +7,50 @@ import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.disposables.Disposable
 import io.reactivex.internal.schedulers.ExecutorScheduler
 import io.reactivex.plugins.RxJavaPlugins
-import org.junit.Test
-
+import io.reactivex.schedulers.Schedulers
 import org.junit.Before
 import org.junit.BeforeClass
+import org.junit.Test
 import org.mockito.Mockito
+import org.mockito.Mockito.mock
+import pl.jakubneukirch.binge_watch.airing.mvp.AiringModel
+import pl.jakubneukirch.binge_watch.airing.mvp.AiringPresenter
+import pl.jakubneukirch.binge_watch.airing.mvp.view.AiringView
 import pl.jakubneukirch.binge_watch.api.objects.Airing
-import pl.jakubneukirch.binge_watch.main.mvp.MainModel
-import pl.jakubneukirch.binge_watch.main.mvp.MainPresenter
-import pl.jakubneukirch.binge_watch.main.mvp.view.MainView
+import pl.jakubneukirch.binge_watch.api.objects.Serie
+import java.util.*
 import java.util.concurrent.TimeUnit
 
+class AiringTest {
 
-public class MainTest {
+    var model: AiringModel = mock()
+    var view: AiringView = mock()
+    lateinit var presenter: AiringPresenter
 
-    var model: MainModel = mock()
-    var view: MainView = mock()
-    lateinit var presenter: MainPresenter
-
-    private val airing: Observable<Airing> = Observable.just(Airing())
+    private val airing: Airing = Airing(arrayListOf(Serie("eee",11)))
+    private val airingObs: Observable<Airing> = Observable.just(airing)
 
     @Before
     fun setup() {
-        presenter = MainPresenter(view, model)
+        presenter = AiringPresenter(view, model)
     }
 
     @Test
-    fun testSmh(){
-        Mockito.`when`(view.observePageChange()).thenReturn(Observable.never())
-        presenter.observePageChange()
-        assert(1== 1)
+    fun testOnCreate() {
+        Mockito.`when`(view.observeRefreshLayout()).thenReturn(Observable.never())
+        Mockito.`when`(model.getAiring()).thenReturn(airingObs)
+
+        presenter.onCreate()
+
+        Mockito.verify(model).getAiring()
+        //Mockito.verify(view).setData(ArrayList<Serie>())
     }
 
     companion object {
         @BeforeClass
         @JvmStatic
         fun setUpRxSchedulers() {
-            var immediate: Scheduler = object : Scheduler() {
+           var immediate: Scheduler = object : Scheduler() {
 
                 override fun scheduleDirect(run: Runnable, delay: Long, unit: TimeUnit): Disposable {
                     return super.scheduleDirect(run, 0, unit)
@@ -58,8 +65,9 @@ public class MainTest {
             RxJavaPlugins.setInitComputationSchedulerHandler { scheduler -> immediate }
             RxJavaPlugins.setInitNewThreadSchedulerHandler { scheduler -> immediate }
             RxJavaPlugins.setInitSingleSchedulerHandler { scheduler -> immediate }
-            RxAndroidPlugins.setInitMainThreadSchedulerHandler { scheduler -> immediate }
+            RxAndroidPlugins.setInitMainThreadSchedulerHandler { scheduler -> Schedulers.trampoline() }
         }
     }
+
 
 }

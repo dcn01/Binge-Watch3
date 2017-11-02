@@ -4,10 +4,14 @@ import com.google.gson.annotations.SerializedName
 import java.util.*
 
 
-class Airing {
+class Airing() {
 
     @SerializedName("results")
     var series: List<Serie> = ArrayList()
+
+    constructor(list: List<Serie>):this(){
+        series = list
+    }
 
     override fun toString(): String {
         var b: StringBuilder = StringBuilder()
