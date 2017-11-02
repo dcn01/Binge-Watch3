@@ -3,15 +3,18 @@
 
     <item
             android:id="@+id/favoritesNav"
+            android:icon="@drawable/ic_favorite_white_24dp"
             android:title="@string/nav_favorites"
     />
     <item
             android:id="@+id/airingNav"
+            android:icon="@drawable/ic_event_note_white_24dp"
             android:title="@string/nav_airing"
     />
 
     <item
             android:id="@+id/similarNav"
             android:title="@string/nav_similar"
+            android:icon="@drawable/ic_swap_horiz_white_24dp"
     />
 </menu>

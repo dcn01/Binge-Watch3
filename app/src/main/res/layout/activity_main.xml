@@ -19,11 +19,13 @@
     <android.support.design.widget.BottomNavigationView
             android:id="@+id/navigationBottom"
             style="@style/NavigationBottom"
-            app:menu="@menu/bottom_navigation"
+            app:menu="@menu/bottom_navigation_menu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/mainPager"
             android:layout_alignParentBottom="true"
+            app:itemTextColor="@color/navigation_color_state"
+            app:itemIconTint="@color/navigation_color_state"
     />
 
 
