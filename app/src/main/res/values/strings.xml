@@ -3,4 +3,5 @@
     <string name="nav_favorites">Favorites</string>
     <string name="nav_airing">Airing today</string>
     <string name="nav_similar">You May Like It</string>
+    <string name="add_favorite">Add Favorite</string>
 </resources>

@@ -10,10 +10,23 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item tools:targetApi="21"
               name="android:navigationBarColor">@color/colorPrimaryDark</item>
+        <item name="buttonStyle">@style/Widget.AppCompat.Button.Borderless.Colored</item>
     </style>
     
     <style name="NavigationBottom" parent="Widget.Design.BottomNavigationView">
         <item name="android:background">@color/colorPrimary</item>
     </style>
+
+    <style name="CardViewSerie" parent="CardView">
+        <item name="android:layout_margin">16dp</item>
+        <item name="cardBackgroundColor">@color/White</item>
+        <item name="cardCornerRadius">2dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+
+
+
 
 </resources>

@@ -15,6 +15,11 @@ import java.util.*
 
 class SerieRecyclerAdapter(var list: List<Serie> = ArrayList<Serie>()) : RecyclerView.Adapter<SerieRecyclerAdapter.ViewHolder>() {
 
+
+    companion object {
+        const val IMAGE_SIZE = MovieDBInterface.API_URL_IMAGE_W342
+    }
+
     inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view){
 
         val itemTitle: TextView
@@ -29,7 +34,7 @@ class SerieRecyclerAdapter(var list: List<Serie> = ArrayList<Serie>()) : Recycle
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
-        var v: View = LayoutInflater.from(parent?.context).inflate(R.layout.item_series_list, null)
+        var v: View = LayoutInflater.from(parent?.context).inflate(R.layout.item_series_list, parent, false)
         var vh = ViewHolder(v)
         return vh
     }
@@ -38,7 +43,7 @@ class SerieRecyclerAdapter(var list: List<Serie> = ArrayList<Serie>()) : Recycle
         holder?.itemTitle?.setText(list.get(position).name)
         holder?.itemDesc?.setText("${list.get(position).id}")
         Picasso.with(holder?.itemView?.context)
-                .load("${MovieDBInterface.API_URL_IMAGE_W92}${list.get(position).posterPath}")
+                .load("$IMAGE_SIZE${list.get(position).posterPath}")
                 .into(holder?.posterView)
     }
 

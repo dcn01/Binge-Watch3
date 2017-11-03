@@ -1,32 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        style="@style/CardViewSerie"
+>
 
-    <ImageView
-            android:id="@+id/posterImage"
-            android:layout_margin="16dp"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-    />
-
-    <TextView
-            android:id="@+id/itemTitle"
-            android:textSize="20sp"
-            android:layout_margin="16dp"
-            android:layout_toEndOf="@id/posterImage"
+    <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="match_parent">
+        <FrameLayout
+                android:id="@+id/posterFrame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <pl.jakubneukirch.binge_watch.views.RatioImageView
+                    android:id="@+id/posterImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:scaleType="centerCrop"
+            />
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/scrim"
+            />
+            <TextView
+                    android:id="@+id/itemTitle"
+                    android:layout_margin="16dp"
+                    android:layout_gravity="bottom"
+                    android:textSize="24sp"
+                    android:textColor="@color/White"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-condensed"/>
+        </FrameLayout>
 
-    <TextView
-            android:id="@+id/itemDesc"
-            android:textSize="16sp"
-            android:layout_margin="16dp"
-            android:layout_toEndOf="@id/posterImage"
-            android:layout_alignBottom="@id/itemTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+        <TextView
+                android:id="@+id/itemDesc"
+                android:textSize="16sp"
+                android:layout_margin="16dp"
+                android:layout_below="@id/posterFrame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        <LinearLayout
+                android:layout_below="@+id/itemDesc"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal"
+        >
+            <Button
+                    android:id="@+id/addFavorite"
+                    android:text="@string/add_favorite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+            />
+        </LinearLayout>
+    </RelativeLayout>
 
 
-</RelativeLayout>
+</android.support.v7.widget.CardView>
