@@ -25,8 +25,8 @@ open class AiringView(context: Context): FrameLayout(context) {
         seriesAdapter.setData(list)
     }
 
-    open fun observeRefreshLayout():Observable<Airing>{
-        return RxSwipeRefreshLayout.refreshes(mainSwipeLayout) as Observable<Airing>
+    open fun observeRefreshLayout():Observable<Any>{
+        return RxSwipeRefreshLayout.refreshes(mainSwipeLayout)
     }
 
     open fun setRefreshing(b: Boolean){

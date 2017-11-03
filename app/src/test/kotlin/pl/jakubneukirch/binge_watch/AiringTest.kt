@@ -45,6 +45,17 @@ class AiringTest {
         Mockito.verify(view).setData(airing.series)
     }
 
+    @Test
+    fun testRefresh() {
+        Mockito.`when`(view.observeRefreshLayout()).thenReturn(Observable.never())
+        Mockito.`when`(model.getAiring()).thenReturn(airingObs)
+
+        presenter.initReload()
+        presenter.reload()
+
+        Mockito.verify(view).setData(airing.series)
+    }
+
     companion object {
         @BeforeClass
         @JvmStatic

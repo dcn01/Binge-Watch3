@@ -33,7 +33,7 @@ class AiringPresenter(val view: AiringView, val model: AiringModel) {
             }
         }
                 .observeOn(Schedulers.newThread())
-                .switchMap { _ ->
+                .switchMap {
                     model.getAiring()
                 }
                 .observeOn(AndroidSchedulers.mainThread())
