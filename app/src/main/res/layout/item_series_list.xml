@@ -7,6 +7,8 @@
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+        <!-- Poster Section -->
         <FrameLayout
                 android:id="@+id/posterFrame"
                 android:layout_width="match_parent"
@@ -34,13 +36,17 @@
                     android:fontFamily="sans-serif-condensed"/>
         </FrameLayout>
 
+        <!-- Description Section -->
         <TextView
                 android:id="@+id/itemDesc"
                 android:textSize="16sp"
+                android:gravity="fill_horizontal"
                 android:layout_margin="16dp"
                 android:layout_below="@id/posterFrame"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+
+        <!-- Button Section -->
 
         <LinearLayout
                 android:layout_below="@+id/itemDesc"

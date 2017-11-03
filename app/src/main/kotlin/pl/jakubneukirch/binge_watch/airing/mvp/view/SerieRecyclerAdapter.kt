@@ -41,7 +41,7 @@ class SerieRecyclerAdapter(var list: List<Serie> = ArrayList<Serie>()) : Recycle
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
         holder?.itemTitle?.setText(list.get(position).name)
-        holder?.itemDesc?.setText("${list.get(position).id}")
+        holder?.itemDesc?.setText("${list.get(position).overview}")
         Picasso.with(holder?.itemView?.context)
                 .load("$IMAGE_SIZE${list.get(position).posterPath}")
                 .into(holder?.posterView)
