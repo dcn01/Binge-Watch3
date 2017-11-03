@@ -28,7 +28,7 @@ class SerieActivity : AppCompatActivity() {
         setContentView(view)
         setSupportActionBar(toolbar)
         presenter.onCreate()
-
+        presenter.id = intent.getIntExtra("ID", -1)
     }
 
     fun initDagger(){

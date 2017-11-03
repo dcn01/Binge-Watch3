@@ -6,6 +6,7 @@ import io.reactivex.disposables.Disposable
 class SeriePresenter(val view: SerieView, val model: SerieModel) {
 
     val compositeDisposable: CompositeDisposable = CompositeDisposable()
+    var id = 0
 
     fun onCreate(){
         compositeDisposable.add(observeFab())
@@ -18,7 +19,7 @@ class SeriePresenter(val view: SerieView, val model: SerieModel) {
     fun observeFab(): Disposable{
         return view.observeFab()
                 .subscribe{
-                    view.showSnackbar("this will add to favorite")
+                    view.showSnackbar("Serie of id: $id")
                 }
     }
 }

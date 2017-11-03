@@ -8,6 +8,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import pl.jakubneukirch.binge_watch.airing.mvp.view.AiringView
 import pl.jakubneukirch.binge_watch.api.objects.Airing
+import java.util.*
 
 class AiringPresenter(val view: AiringView, val model: AiringModel) {
 
@@ -19,11 +20,19 @@ class AiringPresenter(val view: AiringView, val model: AiringModel) {
     fun onCreate() {
         initReload()
         compositeDisposable.add(observeRefreshLayout())
+        compositeDisposable.add(observeButtonsDetails())
         reload()
     }
 
-    enum class Irrelevant{
+    enum class Irrelevant {
         INSTANCE
+    }
+
+    fun observeButtonsDetails(): Disposable {
+        return view.observeRecyclerDetailsButtons()
+                .subscribe { id ->
+                    view.openSerie(id)
+                }
     }
 
     fun initReload() {
@@ -58,5 +67,6 @@ class AiringPresenter(val view: AiringView, val model: AiringModel) {
 
     fun onDestroy() {
         compositeDisposable.clear()
+        compositeDisposable.dispose()
     }
 }
