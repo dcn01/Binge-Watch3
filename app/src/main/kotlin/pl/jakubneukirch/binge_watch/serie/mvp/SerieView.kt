@@ -16,17 +16,17 @@ import kotlinx.android.synthetic.main.activity_serie.view.*
 import pl.jakubneukirch.binge_watch.R
 import pl.jakubneukirch.binge_watch.airing.mvp.AiringPresenter
 
-class SerieView(val activity: Activity) : FrameLayout(activity) {
+open class SerieView(val activity: Activity) : FrameLayout(activity) {
 
     init {
         View.inflate(context, R.layout.activity_serie, this)
     }
 
-    fun observeFab(): Observable<Any> {
+    open fun observeFab(): Observable<Any> {
         return RxView.clicks(fab)
     }
 
-    fun observeMenuBackButton(): Observable<Any> {
+    open fun observeMenuBackButton(): Observable<Any> {
         return Observable.create { e ->
             toolbar.setNavigationOnClickListener { item ->
                 e.onNext(AiringPresenter.Irrelevant.INSTANCE)
@@ -35,11 +35,11 @@ class SerieView(val activity: Activity) : FrameLayout(activity) {
     }
 
 
-    fun showSnackbar(text: String) {
+    open fun showSnackbar(text: String) {
         Snackbar.make(this, text, Snackbar.LENGTH_LONG).show()
     }
 
-    fun onBackPressed() {
+    open fun onBackPressed() {
         activity.onBackPressed()
     }
 }
