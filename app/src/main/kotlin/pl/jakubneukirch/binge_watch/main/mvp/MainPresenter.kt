@@ -41,7 +41,6 @@ class MainPresenter(val view: MainView, val model: MainModel) {
 
     fun observePageChange():Disposable{
         return view.observePageChange()
-                .observeOn(Schedulers.newThread())
                 .subscribe { position ->
                     view.setCheckedPage(position)
                 }
