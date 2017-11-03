@@ -49,19 +49,41 @@
         <!-- Button Section -->
 
         <LinearLayout
+                android:id="@+id/buttonsFrame"
                 android:layout_below="@+id/itemDesc"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_toStartOf="@+id/expandButton"
                 android:layout_alignParentBottom="true"
                 android:orientation="horizontal"
+                android:layout_marginLeft="16dp"
         >
             <Button
-                    android:id="@+id/addFavorite"
+                    android:id="@+id/buttonAddFavorite"
                     android:text="@string/add_favorite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
             />
+            <Button
+                    android:id="@+id/buttonDetails"
+                    android:text="@string/details"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+            />
         </LinearLayout>
+
+        <ImageButton
+                android:id="@+id/expandButton"
+                android:src="@drawable/ic_expand_more_black_24dp"
+                android:background="@android:color/transparent"
+                android:layout_margin="16dp"
+                android:layout_below="@+id/itemDesc"
+                android:layout_alignParentBottom="false"
+                android:layout_alignParentEnd="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+        />
     </RelativeLayout>
 
 
