@@ -27,7 +27,7 @@ class AiringTest {
     var view: AiringView = mock()
     lateinit var presenter: AiringPresenter
 
-    private val airing: Airing = Airing(arrayListOf(Serie("eee",11)))
+    private val airing: Airing = Airing.mockObject()
     private val airingObs: Observable<Airing> = Observable.just(airing)
 
     @Before

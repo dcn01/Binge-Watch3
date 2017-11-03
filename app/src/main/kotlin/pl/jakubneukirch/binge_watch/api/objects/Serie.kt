@@ -10,13 +10,23 @@ class Serie() {
     var id: Int = 0
     @SerializedName("poster_path")
     lateinit var posterPath: String
+    @SerializedName("overview")
+    lateinit var overview: String
 
-    constructor(name:String, id: Int):this(){
-        this.name = name
-        this.id = id
-    }
 
     override fun toString(): String {
         return "id $id, name $name"
+    }
+
+    companion object {
+        fun mockObject(): Serie{
+            var s = Serie()
+            s.name = "Serie name"
+            s.overview = "overview"
+            s.id = 1269
+            s.posterPath = "posterpath"
+
+            return s
+        }
     }
 }

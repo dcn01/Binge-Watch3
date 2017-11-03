@@ -9,9 +9,6 @@ class Airing() {
     @SerializedName("results")
     var series: List<Serie> = ArrayList()
 
-    constructor(list: List<Serie>):this(){
-        series = list
-    }
 
     override fun toString(): String {
         var b: StringBuilder = StringBuilder()
@@ -19,5 +16,13 @@ class Airing() {
             b.append(s.toString())
         }
         return b.toString()
+    }
+
+    companion object {
+        fun mockObject(): Airing{
+            var a = Airing()
+            a.series = arrayListOf(Serie.mockObject(), Serie.mockObject())
+            return a
+        }
     }
 }
