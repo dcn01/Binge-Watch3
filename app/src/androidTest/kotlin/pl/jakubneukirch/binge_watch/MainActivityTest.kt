@@ -42,9 +42,6 @@ class MainActivityTest() {
     @JvmField
     public var rule: ActivityTestRule<MainActivity> = ActivityTestRule(MainActivity::class.java)
 
-    @Inject
-    lateinit var apiInt: MovieDBInterface
-
     @Before
     fun setup(){
     }

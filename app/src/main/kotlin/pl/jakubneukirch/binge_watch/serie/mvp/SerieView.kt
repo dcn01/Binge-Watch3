@@ -1,17 +1,11 @@
 package pl.jakubneukirch.binge_watch.serie.mvp
 
 import android.app.Activity
-import android.content.Context
 import android.support.design.widget.Snackbar
-import android.support.v7.widget.Toolbar
-import android.view.MenuItem
 import android.view.View
 import android.widget.FrameLayout
-import com.jakewharton.rxbinding2.view.RxMenuItem
 import com.jakewharton.rxbinding2.view.RxView
-import com.jakewharton.rxbinding2.widget.RxToolbar
 import io.reactivex.Observable
-import kotlinx.android.synthetic.main.activity_serie.*
 import kotlinx.android.synthetic.main.activity_serie.view.*
 import pl.jakubneukirch.binge_watch.R
 import pl.jakubneukirch.binge_watch.airing.mvp.AiringPresenter
@@ -23,7 +17,7 @@ open class SerieView(val activity: Activity) : FrameLayout(activity) {
     }
 
     open fun observeFab(): Observable<Any> {
-        return RxView.clicks(fab)
+        return RxView.clicks(fabSerie)
     }
 
     open fun observeMenuBackButton(): Observable<Any> {
