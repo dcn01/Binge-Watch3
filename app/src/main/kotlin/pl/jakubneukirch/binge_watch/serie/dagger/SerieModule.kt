@@ -26,7 +26,7 @@ class SerieModule(val activity: SerieActivity) {
 
     @Provides
     @SerieScope
-    fun providesView(context: Context): SerieView = SerieView(context)
+    fun providesView(activity: Activity): SerieView = SerieView(activity)
 
     @Provides
     @SerieScope

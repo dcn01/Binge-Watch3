@@ -10,10 +10,18 @@ class SeriePresenter(val view: SerieView, val model: SerieModel) {
 
     fun onCreate(){
         compositeDisposable.add(observeFab())
+        compositeDisposable.add(observeMenuBack())
     }
+
 
     fun onDestroy(){
         compositeDisposable.clear()
+    }
+
+    fun observeMenuBack():Disposable{
+        return view.observeMenuBackButton().subscribe {
+            view.onBackPressed()
+        }
     }
 
     fun observeFab(): Disposable{
