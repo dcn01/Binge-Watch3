@@ -21,6 +21,7 @@ class AiringPresenter(val view: AiringView, val model: AiringModel) {
         initReload()
         compositeDisposable.add(observeRefreshLayout())
         compositeDisposable.add(observeButtonsDetails())
+        compositeDisposable.add(observeButtonsExpand())
         reload()
     }
 
@@ -32,6 +33,13 @@ class AiringPresenter(val view: AiringView, val model: AiringModel) {
         return view.observeRecyclerDetailsButtons()
                 .subscribe { id ->
                     view.openSerie(id)
+                }
+    }
+
+    fun observeButtonsExpand(): Disposable {
+        return view.observeRecyclerExpandButton()
+                .subscribe{ position ->
+                    view.expandToggleRecyclerItem(position)
                 }
     }
 

@@ -11,9 +11,12 @@ class RatioImageView : ImageView {
     constructor(context: Context, attributeSet: AttributeSet, defStyleAttr: Int) : super(context, attributeSet, defStyleAttr)
     constructor(context: Context, attributeSet: AttributeSet, defStyleAttr: Int, defStyleRes: Int) : super(context, attributeSet, defStyleAttr, defStyleRes)
 
+
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        var height: Int = MeasureSpec.getSize(widthMeasureSpec) * 2/3
+        var height: Int = MeasureSpec.getSize(widthMeasureSpec) * 2 / 3
         var heightSpec: Int = MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY)
         super.onMeasure(widthMeasureSpec, heightSpec)
+
     }
+
 }

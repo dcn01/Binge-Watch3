@@ -4,9 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import com.jakewharton.rxbinding2.view.RxView
 import com.jakewharton.rxbinding2.widget.RxAdapterView
 import com.squareup.picasso.Picasso
@@ -16,6 +14,7 @@ import kotlinx.android.synthetic.main.item_series_list.view.*
 import pl.jakubneukirch.binge_watch.R
 import pl.jakubneukirch.binge_watch.api.MovieDBInterface
 import pl.jakubneukirch.binge_watch.api.objects.Serie
+import pl.jakubneukirch.binge_watch.views.RatioImageView
 import java.util.*
 
 class SerieRecyclerAdapter(var list: List<Serie> = ArrayList<Serie>()) : RecyclerView.Adapter<SerieRecyclerAdapter.ViewHolder>() {
@@ -25,25 +24,25 @@ class SerieRecyclerAdapter(var list: List<Serie> = ArrayList<Serie>()) : Recycle
         const val IMAGE_SIZE = MovieDBInterface.API_URL_IMAGE_W342
     }
 
-    val buttonDetailsObservables: ArrayList<Observable<Serie>>
     val detailsClickSubject = PublishSubject.create<Int>()
-
-    init {
-        buttonDetailsObservables = ArrayList(list.size)
-    }
+    val expandClickSubject = PublishSubject.create<Int>()
 
     inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
         val itemTitle: TextView
         val itemDesc: TextView
-        val posterView: ImageView
+        val posterView: RatioImageView
         val buttonDetails: Button
+        val buttonExpand: ImageButton
+        val framePoster: FrameLayout
 
         init {
             itemTitle = view.itemTitle
             itemDesc = view.itemDesc
             posterView = view.posterImage
             buttonDetails = view.buttonDetails
+            buttonExpand = view.expandButton
+            framePoster = view.posterFrame
         }
     }
 
@@ -64,10 +63,10 @@ class SerieRecyclerAdapter(var list: List<Serie> = ArrayList<Serie>()) : Recycle
             detailsClickSubject.onNext(list.get(position).id)
         }
 
-    }
+        holder?.buttonExpand?.setOnClickListener { view ->
+            expandClickSubject.onNext(position)
+        }
 
-    fun getDetailsClicks(): Observable<Int>{
-        return detailsClickSubject
     }
 
     override fun getItemCount(): Int {
