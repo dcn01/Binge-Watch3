@@ -67,7 +67,7 @@ open class AiringView(context: Context) : FrameLayout(context) {
 
     open fun openSerie(id: Int) {
         var intent = Intent(context, SerieActivity::class.java)
-        intent.putExtra("ID", id)
+        intent.putExtra(SerieActivity.ID, id)
         context.startActivity(intent)
     }
 

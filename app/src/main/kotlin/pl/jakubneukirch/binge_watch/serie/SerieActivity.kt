@@ -25,6 +25,10 @@ class SerieActivity : AppCompatActivity() {
     @Inject
     lateinit var presenter: SeriePresenter
 
+    companion object {
+        const val ID = "ID"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initDagger()
@@ -32,7 +36,7 @@ class SerieActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         invalidateOptionsMenu()
         presenter.onCreate()
-        presenter.id = intent.getIntExtra("ID", -1)
+        presenter.id = intent.getIntExtra(ID, -1)
     }
 
     fun initDagger(){
