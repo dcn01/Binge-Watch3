@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.FrameLayout
+import com.squareup.picasso.Picasso
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.fragment_airing.view.*
 import pl.jakubneukirch.binge_watch.R
@@ -56,11 +57,17 @@ open class AiringView(context: Context) : FrameLayout(context) {
     fun showMoreCard(holder: SerieRecyclerAdapter.ViewHolder?){
         holder?.itemDesc?.visibility = View.VISIBLE
         holder?.posterTitleView?.displayRatio = false
+        Picasso.with(context)
+                .load(R.drawable.ic_expand_less_black_24dp)
+                .into(holder?.buttonExpand)
     }
 
     fun showLessCard(holder: SerieRecyclerAdapter.ViewHolder?){
         holder?.itemDesc?.visibility = View.GONE
         holder?.posterTitleView?.displayRatio = true
+        Picasso.with(context)
+                .load(R.drawable.ic_expand_more_black_24dp)
+                .into(holder?.buttonExpand)
     }
 
     open fun observeRefreshLayout(): Observable<Any> {
