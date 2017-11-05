@@ -15,6 +15,7 @@ import pl.jakubneukirch.binge_watch.R
 import pl.jakubneukirch.binge_watch.api.MovieDBInterface
 import pl.jakubneukirch.binge_watch.api.objects.Serie
 import pl.jakubneukirch.binge_watch.views.RatioImageView
+import pl.jakubneukirch.binge_watch.views.TitleImageView
 import java.util.*
 
 class SerieRecyclerAdapter(var list: List<Serie> = ArrayList<Serie>()) : RecyclerView.Adapter<SerieRecyclerAdapter.ViewHolder>() {
@@ -29,20 +30,16 @@ class SerieRecyclerAdapter(var list: List<Serie> = ArrayList<Serie>()) : Recycle
 
     inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
-        val itemTitle: TextView
-        val itemDesc: TextView
-        val posterView: RatioImageView
         val buttonDetails: Button
         val buttonExpand: ImageButton
-        val framePoster: FrameLayout
+        val posterTitleView: TitleImageView
+        val itemDesc: TextView
 
         init {
-            itemTitle = view.itemTitle
+            posterTitleView = view.airingTitleView
             itemDesc = view.itemDesc
-            posterView = view.posterImage
             buttonDetails = view.buttonDetails
             buttonExpand = view.expandButton
-            framePoster = view.posterFrame
         }
     }
 
@@ -53,11 +50,11 @@ class SerieRecyclerAdapter(var list: List<Serie> = ArrayList<Serie>()) : Recycle
     }
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
-        holder?.itemTitle?.setText(list.get(position).name)
+        holder?.posterTitleView?.setTitle(list.get(position).name)
         holder?.itemDesc?.setText("${list.get(position).overview}")
         Picasso.with(holder?.itemView?.context)
                 .load("$IMAGE_SIZE${list.get(position).posterPath}")
-                .into(holder?.posterView)
+                .into(holder?.posterTitleView?.posterImageView)
 
         holder?.buttonDetails?.setOnClickListener { view ->
             detailsClickSubject.onNext(list.get(position).id)

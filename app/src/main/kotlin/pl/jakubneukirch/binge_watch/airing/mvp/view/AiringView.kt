@@ -55,10 +55,12 @@ open class AiringView(context: Context) : FrameLayout(context) {
 
     fun showMoreCard(holder: SerieRecyclerAdapter.ViewHolder?){
         holder?.itemDesc?.visibility = View.VISIBLE
+        holder?.posterTitleView?.displayRatio = false
     }
 
     fun showLessCard(holder: SerieRecyclerAdapter.ViewHolder?){
         holder?.itemDesc?.visibility = View.GONE
+        holder?.posterTitleView?.displayRatio = true
     }
 
     open fun observeRefreshLayout(): Observable<Any> {
